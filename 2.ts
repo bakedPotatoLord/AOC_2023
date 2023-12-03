@@ -39,7 +39,27 @@ return prev +
 
 console.log("part 1", sum)
 
+let max = {
+	red:0,
+	blue:0,
+	green:0,
+};
 
-const powers = raw.map(l=>
-  l.reduce(subgame=>)
+const powers = raw.map(subgame=>
+  subgame.flat().reduce((prev,block)=>{
+
+		let last = {...prev}
+		
+
+		if(block.num > prev[block.color]) last[block.color] = block.num;
+
+		//console.log(last)
+		return last
+	},max)
 )
+.map(maxes=>{
+	return maxes.red * maxes.blue * maxes.green 
+})
+
+const sumPowers = powers.reduce((a,b)=>a+b,0)
+console.log("part 2", sumPowers)
