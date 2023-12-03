@@ -21,12 +21,17 @@ function err():never{
   throw new Error("aaah")
 }
 
-let keys = Object.keys(digitState)
-let keysSet = new Set(keys)
-let numberRegexFirst = new RegExp( keys.join('|')+"|[0-9]")
+function reverse(str:string){
+  return str.split('').toReversed().join('')
+}
 
-//the beefiest regex ever
-let numberRegexLast = /(?<=([one]|[two]|[three]|[four]|[five]|[six]|[seven]|[eight]|[nine]|[0-9]))(one|two|three|four|five|six|seven|eight|nine|[0-9])|([0-9])/gm
+let digitMap = new Map(Object.entries(digitState))
+let keys = Array.from(digitMap.keys())
+let digitMapLast = new Map(Object.entries(digitState).map(([str,int ])=>[reverse(str),int]))
+let keysLast = Array.from(digitMapLast.keys())
+
+let numberRegexFirst = new RegExp( keys.join('|')+"|[0-9]")
+let numberRegexLast = new RegExp( keysLast.join('|')+"|[0-9]")
 
 let p1 = raw.map(l=>[
 (l.match(/[0-9]/) ?? err()) .at(0),
@@ -36,26 +41,22 @@ let p1 = raw.map(l=>[
 
 let sum = p1.reduce((prev,curr)=>prev+curr,0)
 
-console.log("part 1",sum)
+console.log("part 1", sum)
 
 let p2 = raw.map(l=>[
-  (l.match(numberRegexFirst)).at(0) ,
-  Array.from(l.matchAll(numberRegexLast)).at(-1).at(0) ,
+  l.match(numberRegexFirst).at(0) ,
+  reverse(l).match(numberRegexLast).at(-1) ,
 ])
-
-console.log(p2.slice(0,5))
 
 
 let p2Numbers = p2.map(l=>[
-  keysSet.has(l[0]) ? digitState[l[0]]: parseInt(l[0]),
-  keysSet.has(l[1]) ? digitState[l[1]]: parseInt(l[1]),
+  digitMap.get(l[0]) ?? parseInt(l[0]),
+  digitMapLast.get(l[1]) ?? parseInt(l[1]),
 ])
 .map(l=>parseInt(l.join("")))
 
 let sum2 = p2Numbers.reduce((a,b)=>a+b,0)
 
-console.log(p2.slice(0,5))
-console.log(p2Numbers.slice(0,5))
 console.log("part 2",sum2)
 
 
