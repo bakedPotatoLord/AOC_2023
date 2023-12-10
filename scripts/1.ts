@@ -1,5 +1,4 @@
 import fs from "node:fs/promises"
-import { exit } from "node:process"
 
 let raw =(await fs.readFile("inputs/1.txt",{encoding:"utf8"}))
 .split('\n')
