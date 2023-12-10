@@ -1,4 +1,3 @@
-import { randomFillSync } from "node:crypto"
 import fs from "node:fs/promises"
 
 let raw = (await fs.readFile("./inputs/3.txt",{encoding:"utf8"}))
