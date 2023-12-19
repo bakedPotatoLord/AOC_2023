@@ -7,3 +7,16 @@ export function numberSum(arr:number[]){
 export async function getInput(day:number){
   return await fs.readFile(`inputs/${day}.txt`,{encoding:"utf8"})
 }
+
+export type vec2 = [number,number]
+
+export function vectorEquals(v1:vec2,v2:vec2):boolean{
+  return v1[0] == v2[0] && v1[1] == v2[1]
+}
+
+export function vectorAdd(v1:vec2,v2:vec2):vec2{
+  return [v1[0]+v2[0],v1[1]+v2[1]]
+}
+export function vectorSub(v1:vec2,v2:vec2):vec2{
+  return [v1[0]-v2[0],v1[1]-v2[1]]
+}
