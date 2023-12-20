@@ -20,3 +20,7 @@ export function vectorAdd(v1:vec2,v2:vec2):vec2{
 export function vectorSub(v1:vec2,v2:vec2):vec2{
   return [v1[0]-v2[0],v1[1]-v2[1]]
 }
+
+export function dispMatrix(mx:any[][]){
+  console.log(mx.map(r=>r.join("")).join("\n"))
+}
