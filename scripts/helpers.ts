@@ -24,3 +24,10 @@ export function vectorSub(v1:vec2,v2:vec2):vec2{
 export function dispMatrix(mx:any[][]){
   console.log(mx.map(r=>r.join("")).join("\n"))
 }
+
+export enum Direction{
+  left,
+  right,
+  up,
+  down,
+}

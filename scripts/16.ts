@@ -1,16 +1,11 @@
-import {getInput, numberSum} from './helpers'
+import {getInput, numberSum, Direction} from './helpers'
 
 const matrix = (await getInput(16))
 .split("\n").map(row=>row.split("").map(char=>new MazeNode(char)))
 
 const flatMatrix = matrix.flat()
 
-enum Direction{
-  left,
-  right,
-  up,
-  down,
-}
+
 
 
 class Lazer{
