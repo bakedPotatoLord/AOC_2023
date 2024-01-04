@@ -31,3 +31,8 @@ export enum Direction{
   up,
   down,
 }
+
+export function getPerpendicular(dir:Direction):[Direction,Direction]{
+  if(dir == Direction.left || dir == Direction.right) return [Direction.up,Direction.down]
+  else return [Direction.left,Direction.right]
+}
